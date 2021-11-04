@@ -29,7 +29,7 @@
 - Prioritize events based on user's activity and interests
 - Set preferences to only display events of interest (i.e. favorite sports teams or bands)
 - Create an account on the platform to save preferences
-- Purchase tickets via Ticketmaster redirect
+- Purchase tickets via Eventbrite API
 
 **Optional Nice-to-have Stories**
 
