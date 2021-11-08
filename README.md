@@ -41,28 +41,48 @@
 
 ### 2. Screen Archetypes
 
-* TODO
+* Login 
+* Register - User signs up or logs into their account
+   * Upon Download/Reopening of the application, the user is prompted to log in to gain access to the main feed.
+* Main Feed Screen - Event listings
+   * After login, the main feed of local events is shown. At the top of the feed are events categories.
+   * Tapping on a category will list events filtered by that category. 
+   * Tapping on an event will lead to a detailed view of the event.
+* Detailed View Screen
+   * Provides users with detailed information about the event, including photos, location, etc. A link to buy tickets will also be on this screen.
+* Search Screen.
+   * Allows user to be able to enter their zip code to see events near their location.
+* Profile Screen
+   * Shows the user's profile, as well as past events, badges, and friend connections.
+* Past Events Screen
+   * Shows the user's past ticket purchases.
+* Friend Screen
+   * Shows the user's friend connections.
+   * Tapping on a profile will direct the user to the full profile.
+* Badges Screen
+   * Shows the user's special cosmetic awards gained from attending events.
+
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* TODO
+* Home
+* Search
+* Profile
 
 **Flow Navigation** (Screen to Screen)
 
-* TODO
+* Forced Log-in -> Account creation if no log in is available
+* Main feed -> Detailed view
+* Search (empty if no zip code is given) -> Detailed View
+* Profile (text edit fields) -> Past events
+* Profile (text edit fields) -> Friends list 
+* Profile (text edit fields) -> Badges
+* Past events -> Detailed view(if available)
+* Friend list -> Friend's Profile
 
 ## Wireframes
-- TODO
 
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
-## Schema 
-- TODO
-### Models
-- TODO
-### Networking
-- TODO
+### Digital Wireframes & Mockups
+<img src="https://i.imgur.com/mAVF0Ux.png" width=800><br>
