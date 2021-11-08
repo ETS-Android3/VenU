@@ -86,3 +86,4 @@
 
 ### Digital Wireframes & Mockups
 <img src="https://i.imgur.com/mAVF0Ux.png" width=800><br>
+<img src="https://i.imgur.com/QP8sWc9.png" width=800><br>
