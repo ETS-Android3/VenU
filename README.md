@@ -48,6 +48,8 @@
    * After login, the main feed of local events is shown. At the top of the feed are events categories.
    * Tapping on a category will list events filtered by that category. 
    * Tapping on an event will lead to a detailed view of the event.
+* Maps Screen
+   * Shows the events in the area on a map of the user's local area. Events are hightlighted by pins and clickable to get more details.
 * Detailed View Screen
    * Provides users with detailed information about the event, including photos, location, etc. A link to buy tickets will also be on this screen.
 * Search Screen.
@@ -75,6 +77,8 @@
 
 * Forced Log-in -> Account creation if no log in is available
 * Main feed -> Detailed view
+* Main feed -> Map view
+* Map view -> detailed View
 * Search (empty if no zip code is given) -> Detailed View
 * Profile (text edit fields) -> Past events
 * Profile (text edit fields) -> Friends list 
