@@ -13,10 +13,10 @@
 ### App Evaluation
 - **Category:** Entertainment
 - **Mobile:** This app would be primarily developed for Android mobile devices.
-- **Story:** Pulls a list of events within the user-provided location parameters and displays them to users sorted by Sports, Music, Theater. Users can then purchase tickets to the events through a Ticketmaster redirect.
+- **Story:** Pulls a list of events within the user-provided location parameters and displays them to users sorted by Sports, Music, Theater. Users can then make mock purchases of tickets to the events and mark themselves as attending.
 - **Market:** Any user is welcome to use this app as long as they meet with an event's age requirements.
 - **Habit:** This app could be used as often as users would like, depending on their social life and interests.
-- **Scope:**
+- **Scope:** This app includes features for browsing events, using profiles to personalize user experience, and making mock purchases for events. It has the option to expand the account aspect for socialization with other users and other account features such as tracking history and using external OAUTH for registration. Another possible expansion includes making actual ticket purchases directly in the app through an external vendor API such as Eventbrite, but the app will not include any direct interaction with event hosts or venues, only mediated through existing APIs.
 
 ## Product Spec
 
@@ -29,7 +29,7 @@
 - Prioritize events based on user's activity and interests
 - Set preferences to only display events of interest (i.e. favorite sports teams or bands)
 - Create an account on the platform to save preferences
-- Purchase tickets via Eventbrite API
+- Purchase mock tickets directly in app
 
 **Optional Nice-to-have Stories**
 
