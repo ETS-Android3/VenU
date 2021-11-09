@@ -45,9 +45,10 @@
 * Register - User signs up or logs into their account
    * Upon Download/Reopening of the application, the user is prompted to log in to gain access to the main feed.
 * Main Feed Screen - Event listings
-   * After login, the main feed of local events is shown. At the top of the feed are events categories.
+   * After login, the main feed defaults to list view and a list of local events is shown. At the top of the feed are events categories.
    * Tapping on a category will list events filtered by that category. 
    * Tapping on an event will lead to a detailed view of the event.
+   * Going into map view will show local events highlighted on the map. with the ability to tap on the highlights to learn more and enter a detailed view.
 * Maps Screen
    * Shows the events in the area on a map of the user's local area. Events are hightlighted by pins and clickable to get more details.
 * Detailed View Screen
