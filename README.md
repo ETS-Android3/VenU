@@ -85,5 +85,7 @@
 ## Wireframes
 
 ### Digital Wireframes & Mockups
-<img src="https://i.imgur.com/mAVF0Ux.png" width=800><br>
-<img src="https://i.imgur.com/QP8sWc9.png" width=800><br>
+<img src="https://i.imgur.com/NsV7rx5.png" width=800><br>
+
+### Interactive Prototype
+<img src="https://i.imgur.com/tgXJh69.gif" width=800><br>
