@@ -114,7 +114,7 @@
 
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
-   | objectId      | String   | unique id for the user (default field) |
+   | objectId      | String   | unique id for the event (default field) |
    | eventname        | String| unique name for the event |
    | photo        | String     | url of event images and photos |
    | eventID     | String   | Ticketmaster has unique eventIDs for every event |
@@ -122,11 +122,11 @@
    | time    | Datetime  | datetime object of the event |
    | location     | String | Location of the event |
 
-#### Badges
+#### Badge
 
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
-   | objectId      | String   | unique id for the user (default field) |
+   | objectId      | String   | unique id for the badge (default field) |
    | badgename        | String| unique name for the badge |
    | photo        | String     | url of the badge image |
    | description | String   | badge description |
@@ -147,15 +147,63 @@
 	- (Update/PUT) Update user with event data if choosing to attend
 - Search Screen
 	- (Read/GET) Get list of events based on search input
+	```java
+	// Get User's past events
+        ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+        query.include(Event.location);
+	query.whereEqualTo(Post.location, searchedLocation);
+        query.addDescendingOrder(Event.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Event>() {
+            @Override
+            public void done(List<Event> events, ParseException e) {
+                if(e != null){
+                    Log.e(TAG, "Error getting events", e);
+                }
+                // TODO: something
+            }
+        });
+	```
 	- (Read/GET) Get list of users based on search input
+	```java
+	// Get searched users
+        ParseQuery<User> query = ParseQuery.getQuery(User.class);
+        query.include(User.KEY_USER);
+	query.whereEqualTo(User.KEY_USER, searchedUser);
+        query.addDescendingOrder(User.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<User>() {
+            @Override
+            public void done(List<User> users, ParseException e) {
+                if(e != null){
+                    Log.e(TAG, "Error getting users", e);
+                }
+                // TODO: something
+            }
+        });
+	```
 	- (Update/PUT) Update user's friends array if choosing to follow searched user
 - Profile Screen
 	- (Read/GET) Retrieve info from user's object (followers, friends, past events, badges)
 - Past Events Screen
 	- (Read/GET) Get more detailed info on user's past events
+	
 - Friend Screen
 	- (Read/GET) Get full list of user's follows
 	- (Update/PUT) Unfollow a user and remove them from their follows list
 - Badges Screen
 	- (Read/GET) Get list of available badges, including info on how to earn them
+	```java
+	// Get badges
+        ParseQuery<Badge> query = ParseQuery.getQuery(Badge.class);
+        query.include(Badge.KEY_ID);
+        query.addDescendingOrder(Badge.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Badge>() {
+            @Override
+            public void done(List<Badge> badges, ParseException e) {
+                if(e != null){
+                    Log.e(TAG, "Error getting badges", e);
+                }
+                // TODO: something
+            }
+        });
+	```
 	- (Read/GET) Get list of badges the user has earned
