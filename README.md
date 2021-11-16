@@ -130,3 +130,32 @@
    | badgename        | String| unique name for the badge |
    | photo        | String     | url of the badge image |
    | description | String   | badge description |
+
+### Networking
+
+- Login Screen
+	- (Read/GET) Query database to verify inputted credentials 
+- Register Screen
+	- (Create/POST) Create a new profile and add it to database
+- Main Feed Screen
+	- (Read/GET) Query for events in area based on location alone or selected category
+- Maps Screen
+	- (Read/GET) Get map info of local area using external API
+	- (Read/GET) Query for events in local area to place onto map using TicketMaster API
+- Detailed View Screen
+	- (Read/GET) Query for detailed info on clicked event
+	- (Update/PUT) Update user with event data if choosing to attend
+- Search Screen
+	- (Read/GET) Get list of events based on search input
+	- (Read/GET) Get list of users based on search input
+	- (Update/PUT) Update user's friends array if choosing to follow searched user
+- Profile Screen
+	- (Read/GET) Retrieve info from user's object (followers, friends, past events, badges)
+- Past Events Screen
+	- (Read/GET) Get more detailed info on user's past events
+- Friend Screen
+	- (Read/GET) Get full list of user's follows
+	- (Update/PUT) Unfollow a user and remove them from their follows list
+- Badges Screen
+	- (Read/GET) Get list of available badges, including info on how to earn them
+	- (Read/GET) Get list of badges the user has earned
