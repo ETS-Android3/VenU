@@ -107,7 +107,8 @@
    | email       | String   | contact information for user |
    | friends | Array   | array of objectIds that acts as a friends list |
    | pastevents    | Array  | array of objectIds that stores old ticket purchases |
-   | badges     | Array | date when post is created (default field) |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | badges     | Array | array of badge objectIds of badges the user has earned |
 
 #### Event
 
