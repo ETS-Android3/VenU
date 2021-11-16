@@ -94,3 +94,38 @@
 
 ### Interactive Prototype
 <img src="https://i.imgur.com/tgXJh69.gif">
+
+## Schema 
+### Models
+#### User
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user (default field) |
+   | username        | String| unique username for the user |
+   | password         | String     | key for authenticating user |
+   | email       | String   | contact information for user |
+   | friends | Array   | array of objectIds that acts as a friends list |
+   | pastevents    | Array  | array of objectIds that stores old ticket purchases |
+   | badges     | Array | date when post is created (default field) |
+
+#### Event
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user (default field) |
+   | eventname        | String| unique name for the event |
+   | photo        | String     | url of event images and photos |
+   | eventID     | String   | Ticketmaster has unique eventIDs for every event |
+   | description | String   | event description |
+   | time    | Datetime  | datetime object of the event |
+   | location     | String | Location of the event |
+
+#### Badges
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user (default field) |
+   | badgename        | String| unique name for the badge |
+   | photo        | String     | url of the badge image |
+   | description | String   | badge description |
