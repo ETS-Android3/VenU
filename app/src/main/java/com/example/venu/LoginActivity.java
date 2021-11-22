@@ -39,30 +39,10 @@ public class LoginActivity extends AppCompatActivity {
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // Create the ParseUser
-                ParseUser user = new ParseUser();
-                // Set core properties
-                user.setEmail(etEmail.getText().toString());
-                user.setPassword(etPassword.getText().toString());
-                // Invoke signUpInBackground
-                user.signUpInBackground(new SignUpCallback() {
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            // Hooray! Let them use the app now.
-                            goMainActivity();
-                            Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // Sign up didn't succeed. Look at the ParseException
-                            // to figure out what went wrong
-                            Log.e(TAG, "Issue with sign up!", e);
-                            Toast.makeText(LoginActivity.this, "Issue with sign up!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            public void onClick(View view) {
+                goRegisterActivity();
             }
         });
-
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +77,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
         finish();
 
+    }
+
+    private void goRegisterActivity() {
+        Intent i = new Intent(this, RegistrationActivity.class);
+        startActivity(i);
+        finish();
     }
 
 }
