@@ -4,9 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.venu.models.Event;
+import com.example.venu.models.JSONPlaceholder;
+import com.example.venu.models.JSONResponse;
+
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -16,8 +26,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String TAG = "MainActivity";
     RecyclerView rvEventPreviews;
+    List<Event> events;
+    EventAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,27 +41,30 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+
+        // Init the list of tweets and adapter
+        events = new ArrayList<>();
+        adapter = new EventAdapter(this, events);
+
         rvEventPreviews = findViewById(R.id.rvEventPreviews);
-        rvEventPreviews.setHasFixedSize(true);
-        rvEventPreviews.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        rvEventPreviews.setLayoutManager(layoutManager);
+        rvEventPreviews.setAdapter(adapter);
 
         JSONPlaceholder jsonPlaceholder = retrofit.create(JSONPlaceholder.class);
-        Call<List<Event>> call = jsonPlaceholder.getEvent();
-        call.enqueue(new Callback<List<Event>>() {
+        Call<JSONResponse> call = jsonPlaceholder.getEvent();
+        call.enqueue(new Callback<JSONResponse>() {
             @Override
-            public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                if(!response.isSuccessful()){
-                    Toast.makeText(MainActivity.this, response.code(), Toast.LENGTH_LONG).show();
-                    return;
-                }
-                List<Event> eventList = response.body();
-                EventAdapter eventAdapter = new EventAdapter(MainActivity.this, eventList);
-                rvEventPreviews.setAdapter(eventAdapter);
+            public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                JSONResponse jsonResponse = response.body();
+                events = (Arrays.asList(jsonResponse.getEventsArray().getEvents()));
+                adapter.clear();
+                adapter.addAll(events);
             }
 
             @Override
-            public void onFailure(Call<List<Event>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<JSONResponse> call, Throwable t) {
+
             }
         });
     }

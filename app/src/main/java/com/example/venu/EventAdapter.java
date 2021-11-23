@@ -10,17 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.venu.models.Event;
+import com.example.venu.models.Venues;
+
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 
-    List<Event> eventList;
+    List<Event> events;
     Context context;
 
     public EventAdapter(Context context, List<Event> event){
         this.context = context;
-        eventList = event;
-        for(Event temp_event: eventList){
+        events = event;
+        for(Event temp_event: events){
             Log.i("EventAdapter", temp_event.toString());
         }
     }
@@ -34,17 +37,28 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
-        Event event = eventList.get(position);
+        Event event = events.get(position);
         holder.title.setText(event.getTitle());
-        holder.venue.setText(event.getVenue());
-        holder.date.setText(event.getDate());
-        holder.price.setText(event.getPrice());
+        Venues venue = event.getEmbedded().getVenues()[0];
+        holder.venue.setText(venue.getVenueName());
+        holder.date.setText(event.getDates().getStart().getLocalDate());
+        // holder.price.setText(event.getPrice());
 
     }
 
     @Override
     public int getItemCount() {
-        return eventList.size();
+        return events.size();
+    }
+
+    public void clear(){
+        events.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Event> eventList){
+        events.addAll(eventList);
+        notifyDataSetChanged();
     }
 
     public class EventViewHolder extends RecyclerView.ViewHolder{
