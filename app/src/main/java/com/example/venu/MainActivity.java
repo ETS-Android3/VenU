@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.venu.adapters.EventAdapter;
 import com.example.venu.models.Event;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     public static final String BASE_EVENTS_URL = "https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*";
     private BottomNavigationView bottomNavigationView;
+    public static final int LOGIN_ACTIVITY_REQUEST_CODE = 11;
     List<Event> events;
 
     @Override
@@ -51,8 +54,11 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Search profile pressed");
                         break;
                     case R.id.action_logout:
-                        Log.d(TAG, "logout button pressed");
-                        break;
+                        ParseUser.logOut();
+                        ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
+                        return true;
                     default:
                         break;
                 }
