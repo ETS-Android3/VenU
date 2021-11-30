@@ -1,7 +1,6 @@
 package com.example.venu.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +51,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
         TextView tvPrice;
         TextView tvDate;
         TextView tvCity;
-        ImageView ivPhotoPreview;
+        ImageView ivPhotoLargest;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,7 +60,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
             tvPrice = itemView.findViewById(R.id.tvPrice);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvCity = itemView.findViewById(R.id.tvCity);
-            ivPhotoPreview = itemView.findViewById(R.id.ivPhotoPreview);
+            ivPhotoLargest = itemView.findViewById(R.id.ivPhotoLargest);
         }
 
         public void bind(Event event) {
@@ -70,7 +69,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
             tvPrice.setText("$"+event.getMin_price());
             tvDate.setText(event.getDate());
             tvCity.setText(event.getVenue_city()+", "+event.getVenue_state_abv());
-            Glide.with(context).load(event.getPreview_image_url()).into(ivPhotoPreview);
+            Glide.with(context).load(event.getLargest_image_url()).into(ivPhotoLargest);
         }
     }
 }

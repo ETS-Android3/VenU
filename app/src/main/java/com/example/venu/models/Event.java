@@ -22,6 +22,7 @@ public class Event {
     String date;
     String preview_image_url;
     String banner_image_url;
+    String largest_image_url;
     String primary_classification;
     String genre;
 
@@ -50,6 +51,14 @@ public class Event {
             if (obj.getString("ratio").equals("16_9")){
                 preview_image_url = images_from_json.getJSONObject(i).getString("url"); // 16:9 ratio
                 break;
+            }
+        }
+        int max_height = 0;
+        for (int i = 0; i < images_from_json.length(); i++){
+            JSONObject obj = images_from_json.getJSONObject(i);
+            if (obj.getInt("height") > max_height){
+                largest_image_url = images_from_json.getJSONObject(i).getString("url");
+                max_height = obj.getInt("height");
             }
         }
 
@@ -120,6 +129,8 @@ public class Event {
     public String getBanner_image_url() {
         return banner_image_url;
     }
+
+    public String getLargest_image_url() { return largest_image_url; }
 
     public String getPrimary_classification() {
         return primary_classification;
