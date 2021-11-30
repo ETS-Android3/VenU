@@ -4,68 +4,70 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.codepath.asynchttpclient.AsyncHttpClient;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.venu.adapters.EventAdapter;
 import com.example.venu.models.Event;
-import com.example.venu.models.JSONPlaceholder;
-import com.example.venu.models.JSONResponse;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import okhttp3.Headers;
+
 
 public class MainActivity extends AppCompatActivity {
+
     public static final String TAG = "MainActivity";
-    RecyclerView rvEventPreviews;
+    public static final String BASE_EVENTS_URL = "https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*";
+
     List<Event> events;
-    EventAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://app.ticketmaster.com/discovery/v2/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        // Init the list of tweets and adapter
+        RecyclerView rvEvents = findViewById(R.id.rvEvents);
         events = new ArrayList<>();
-        adapter = new EventAdapter(this, events);
 
-        rvEventPreviews = findViewById(R.id.rvEventPreviews);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        rvEventPreviews.setLayoutManager(layoutManager);
-        rvEventPreviews.setAdapter(adapter);
+        // create the adapter
+        EventAdapter eventAdapter = new EventAdapter(this, events);
+        // set the adapter to the recyclerView
+        rvEvents.setAdapter(eventAdapter);
+        // set the layout manager on the recyclerView
+        rvEvents.setLayoutManager(new LinearLayoutManager(this));
 
-        JSONPlaceholder jsonPlaceholder = retrofit.create(JSONPlaceholder.class);
-        Call<JSONResponse> call = jsonPlaceholder.getEvent();
-        call.enqueue(new Callback<JSONResponse>() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(BASE_EVENTS_URL, new JsonHttpResponseHandler() {
             @Override
-            public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                JSONResponse jsonResponse = response.body();
-                events = (Arrays.asList(jsonResponse.getEventsArray().getEvents()));
-                adapter.clear();
-                adapter.addAll(events);
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.d(TAG, "onSuccess");
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    // root of the ticketmaster json response
+                    JSONObject embedded_from_json = jsonObject.getJSONObject("_embedded");
+                    // events array containing all necessary info
+                    JSONArray events_from_json = embedded_from_json.getJSONArray("events");
+                    events.addAll(Event.getEventList(events_from_json));
+                    eventAdapter.notifyDataSetChanged();
+                    Log.i(TAG, "Events: "+events.size());
+                } catch (JSONException e) {
+                    Log.e(TAG, "JSON Exception upon retrieving events", e);
+                }
             }
 
             @Override
-            public void onFailure(Call<JSONResponse> call, Throwable t) {
-
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.e(TAG, "onFailure ERROR", throwable);
             }
         });
+
+
     }
 }
