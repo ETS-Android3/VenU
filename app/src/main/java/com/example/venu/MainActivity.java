@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String BASE_EVENTS_URL = "https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*";
     private BottomNavigationView bottomNavigationView;
     public static final int LOGIN_ACTIVITY_REQUEST_CODE = 11;
+    public static final int PROFILE_ACTIVITY_REQUEST_CODE = 22;
     List<Event> events;
 
     @Override
@@ -51,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Search menu pressed");
                         break;
                     case R.id.action_profile:
-                        Log.d(TAG, "Search profile pressed");
-                        break;
+                        goProfileActivity();
+                        return true;
                     case R.id.action_logout:
                         ParseUser.logOut();
                         ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
+                        Intent intentl = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivityForResult(intentl, LOGIN_ACTIVITY_REQUEST_CODE);
                         return true;
                     default:
                         break;
@@ -101,5 +102,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void goProfileActivity() {
+        Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
+        finish();
     }
 }
