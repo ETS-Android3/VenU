@@ -1,16 +1,19 @@
 package com.example.venu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.venu.adapters.EventAdapter;
 import com.example.venu.models.Event;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
     public static final String BASE_EVENTS_URL = "https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*";
-
+    private BottomNavigationView bottomNavigationView;
     List<Event> events;
 
     @Override
@@ -34,6 +37,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rvEvents = findViewById(R.id.rvEvents);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem){
+                switch (menuItem.getItemId()) {
+                    case R.id.action_search:
+                        Log.d(TAG, "Search menu pressed");
+                        break;
+                    case R.id.action_profile:
+                        Log.d(TAG, "Search profile pressed");
+                        break;
+                    case R.id.action_logout:
+                        Log.d(TAG, "logout button pressed");
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+
         events = new ArrayList<>();
 
         // create the adapter
