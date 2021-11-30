@@ -32,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
                         Log.d(TAG, "Search menu pressed");
                         break;
                     case R.id.action_profile:
-                        Log.d(TAG, "Search profile pressed");
+                        Log.d(TAG, "Profile pressed");
                         break;
                     case R.id.action_logout:
                         ParseUser.logOut();
