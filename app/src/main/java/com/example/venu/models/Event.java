@@ -36,8 +36,22 @@ public class Event {
 
         // retrieve image JSONArray to find objects containing image info
         JSONArray images_from_json = jsonObject.getJSONArray("images");
-        preview_image_url = images_from_json.getJSONObject(0).getString("url"); // 4:3 ratio 305x225
-        banner_image_url = images_from_json.getJSONObject(1).getString("url");  // 19:9 ratio 2048x1152
+        preview_image_url = images_from_json.getJSONObject(0).getString("url"); //default if 4:3 not found
+        for (int i = 0; i < images_from_json.length(); i++){
+            JSONObject obj = images_from_json.getJSONObject(i);
+            if (obj.getString("ratio").equals("4_3")){
+                preview_image_url = images_from_json.getJSONObject(0).getString("url"); // 4:3 ratio
+                break;
+            }
+        }
+        banner_image_url = images_from_json.getJSONObject(1).getString("url");  // default if 16:9 not found
+        for (int i = 0; i < images_from_json.length(); i++){
+            JSONObject obj = images_from_json.getJSONObject(i);
+            if (obj.getString("ratio").equals("16_9")){
+                preview_image_url = images_from_json.getJSONObject(0).getString("url"); // 16:9 ratio
+                break;
+            }
+        }
 
         JSONArray prices_from_json = jsonObject.getJSONArray("priceRanges");
         float min_price_float = Float.parseFloat(prices_from_json.getJSONObject(0).getString("min"));
