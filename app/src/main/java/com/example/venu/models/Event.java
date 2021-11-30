@@ -40,7 +40,7 @@ public class Event {
         for (int i = 0; i < images_from_json.length(); i++){
             JSONObject obj = images_from_json.getJSONObject(i);
             if (obj.getString("ratio").equals("4_3")){
-                preview_image_url = images_from_json.getJSONObject(0).getString("url"); // 4:3 ratio
+                preview_image_url = images_from_json.getJSONObject(i).getString("url"); // 4:3 ratio
                 break;
             }
         }
@@ -48,7 +48,7 @@ public class Event {
         for (int i = 0; i < images_from_json.length(); i++){
             JSONObject obj = images_from_json.getJSONObject(i);
             if (obj.getString("ratio").equals("16_9")){
-                preview_image_url = images_from_json.getJSONObject(0).getString("url"); // 16:9 ratio
+                preview_image_url = images_from_json.getJSONObject(i).getString("url"); // 16:9 ratio
                 break;
             }
         }
