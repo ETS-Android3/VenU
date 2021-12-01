@@ -2,9 +2,10 @@
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+2. [Product Spec](#Product-Spec)
+3. [Wireframes](#Wireframes)
+4. [Schema](#Schema)
+5. [Sprint Demos](#Sprint Demos)
 
 ## Overview
 ### Description
@@ -211,6 +212,8 @@
         });
 	```
 	- (Read/GET) Get list of badges the user has earned
+
+## Sprint Demos 
 
 Sprint 1 Progress Demo:
 
