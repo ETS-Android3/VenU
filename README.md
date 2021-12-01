@@ -215,3 +215,7 @@
 Sprint 1 Progress Demo:
 
 <img src='VenU_sprint_1.gif' title='Sprint 1 Video Walkthrough' width='' alt='Sprint 1 Video Walkthrough' />
+
+Sprint 2 Progress Demo:
+
+<img src='VenU_sprint_2.gif' title='Sprint 2 Video Walkthrough' width='' alt='Sprint 2 Video Walkthrough' />
