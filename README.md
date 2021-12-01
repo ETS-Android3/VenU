@@ -24,12 +24,16 @@
 
 **Required Must-have Stories**
 
-- See a list of live events within a given radius of the user's location
-- Filter results by categories like sports, music, comedy shows, etc.
-- Prioritize events based on user's activity and interests
-- Set preferences to only display events of interest (i.e. favorite sports teams or bands)
-- Create an account on the platform to save preferences
-- Purchase mock tickets directly in app
+- [x] Retrieve a list of events from the Ticketmaster API.
+- [ ] Filter events by radius
+- [ ] Filter events by genre.
+- [ ] Filter by user preferences.
+- [x] Create a login and registration screen
+- [x] Create a bottom navigation bar that allows log out.
+- [x] Allow users to see their profile including a profile picture and biography.
+- [x] Display achieveable badges
+- [ ] Display followers.
+- [ ] Purchase tickets directly in the app.
 
 **Optional Nice-to-have Stories**
 
