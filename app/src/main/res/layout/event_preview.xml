@@ -1,69 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/preview_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/customborder"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDate"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        tools:text="$35.63" />
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="5dp">
 
-    <TextView
-        android:id="@+id/tvVenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        tools:text="Sample Venue Name" />
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDate"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            tools:text="$35.63" />
 
-    <TextView
-        android:id="@+id/tvCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvPrice"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        tools:text="Austin, TX" />
+        <TextView
+            android:id="@+id/tvVenue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="0dp"
+            tools:text="Sample Venue Name" />
 
-    <ImageView
-        android:id="@+id/ivPhotoLargest"
-        android:layout_width="180dp"
-        android:layout_height="135dp"
-        android:layout_below="@+id/tvTitle"
-        android:layout_centerHorizontal="false"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/ivPhotoLargest"
+            android:layout_width="180dp"
+            android:layout_height="135dp"
+            android:layout_below="@+id/tvTitle"
+            android:layout_centerHorizontal="false"
+            android:layout_marginTop="8dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvVenue"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        tools:text="01-01-1991" />
+        <TextView
+            android:id="@+id/tvCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPrice"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            tools:text="Austin, TX" />
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        tools:text="Test Event Title" />
+        <ImageView
+            android:id="@+id/ivPhotoPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="false"
+            tools:srcCompat="@tools:sample/avatars" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvVenue"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            tools:text="01-01-1991" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            tools:text="Test Event Title" />
+
+    </RelativeLayout>
+
+</LinearLayout>

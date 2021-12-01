@@ -1,14 +1,20 @@
 package com.example.venu.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Event {
+
+    public static final String TAG = "Event";
 
     String title;
     String id;
@@ -25,6 +31,9 @@ public class Event {
     String largest_image_url;
     String primary_classification;
     String genre;
+
+    public Event(){
+    }
 
     public Event(JSONObject jsonObject) throws JSONException {
 
@@ -61,6 +70,8 @@ public class Event {
                 max_height = obj.getInt("height");
             }
         }
+
+        Log.i(TAG, title+" max height is "+max_height);
 
         JSONArray prices_from_json = jsonObject.getJSONArray("priceRanges");
         float min_price_float = Float.parseFloat(prices_from_json.getJSONObject(0).getString("min"));
