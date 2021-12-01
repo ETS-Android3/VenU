@@ -2,11 +2,14 @@ package com.example.venu;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +48,31 @@ public class ProfileActivity extends AppCompatActivity {
         ivProfilePicture = findViewById(R.id.ivProfilePic);
         tvNumEvents = findViewById(R.id.tvNumShows);
 
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem){
+                switch (menuItem.getItemId()) {
+                    case R.id.action_search:
+                        goMainActivity();
+                        return true;
+                    case R.id.action_profile:
+                        Log.i(TAG, "ProfileActivity pressed");
+                        break;
+                    case R.id.action_logout:
+                        ParseUser.logOut();
+                        ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                        Intent intentl = new Intent(ProfileActivity.this, LoginActivity.class);
+                        startActivityForResult(intentl, LOGIN_ACTIVITY_REQUEST_CODE);
+                        return true;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         ParseQuery<ParseUser> query = ParseQuery.getQuery("_User");
         query.include(Profile.KEY_USERNAME);
@@ -67,6 +95,12 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void goMainActivity() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void showBadges(Object badgeArray){
