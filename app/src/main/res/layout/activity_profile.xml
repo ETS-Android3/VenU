@@ -47,7 +47,7 @@
         android:id="@+id/badges"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="485dp"
         android:layout_marginBottom="17dp"
         android:text="Badges:"
         android:textAlignment="center"
@@ -55,12 +55,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBadges"
-        android:layout_width="408dp"
-        android:layout_height="118dp"
+        android:layout_width="411dp"
+        android:layout_height="164dp"
         android:layout_below="@+id/tvBio"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="239dp"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="211dp"
         android:orientation="horizontal" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

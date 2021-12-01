@@ -86,7 +86,9 @@ public class ProfileActivity extends AppCompatActivity {
                     return;
                 }
                 for (ParseUser profile : profiles) {
-                    Glide.with(ProfileActivity.this).load(profile.getParseFile("profilepicture").getUrl()).into(ivProfilePicture);
+                    if (profile.get("profilepicture") != null ){
+                        Glide.with(ProfileActivity.this).load(profile.getParseFile("profilepicture").getUrl()).into(ivProfilePicture);
+                    }
                     tvUsername.setText(profile.getUsername());
                     tvBio.setText(String.valueOf(profile.get("bio")));
                     List<String> pastEvents = (List<String>) profile.get("pastevents");

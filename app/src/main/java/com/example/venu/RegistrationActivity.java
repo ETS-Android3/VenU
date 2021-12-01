@@ -10,9 +10,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.venu.models.Badge;
 import com.parse.ParseUser;
 import com.parse.ParseException;
 import com.parse.SignUpCallback;
+
+import java.util.List;
 
 
 public class RegistrationActivity extends AppCompatActivity {

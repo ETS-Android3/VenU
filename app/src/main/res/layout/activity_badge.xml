@@ -16,12 +16,12 @@
 
     <TextView
         android:id="@+id/tvBadgeName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Description..."
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="10sp"
         android:textStyle="bold"
         tools:ignore="SpeakableTextPresentCheck" />
 
