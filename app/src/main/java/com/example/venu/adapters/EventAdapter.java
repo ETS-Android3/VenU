@@ -81,7 +81,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
             tvCity.setText(event.getVenue_city()+", "+event.getVenue_state_abv());
             Glide.with(context).load(event.getLargest_image_url()).into(ivPhotoLargest);
             Glide.with(context)
-                    .load(event.getPreview_image_url())
+                    .load(event.getLargest_image_url())
                     .circleCrop() // scale image to fill the entire ImageView
                     .transform(new RoundedCornersTransformation(10, 5))
                     .into(ivPhotoLargest);
