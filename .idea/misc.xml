@@ -3,27 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Matt/AndroidStudioProjects/VenU/app/src/main/res/layout/activity_login.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/Matt/AndroidStudioProjects/VenU/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/Matt/AndroidStudioProjects/VenU/app/src/main/res/layout/activity_register.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/Matt/AndroidStudioProjects/VenU/app/src/main/res/layout/event_preview.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/ms266/AndroidStudioProjects/VenU/app/src/main/res/drawable/customborder.xml" value="0.2703125" />
+        <entry key="..\:/Users/ms266/AndroidStudioProjects/VenU/app/src/main/res/layout/activity_event_detail.xml" value="0.1578125" />
         <entry key="..\:/Users/ms266/AndroidStudioProjects/VenU/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/ms266/AndroidStudioProjects/VenU/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ms266/AndroidStudioProjects/VenU/app/src/main/res/layout/activity_register.xml" value="0.12916666666666668" />
+<<<<<<< Updated upstream
         <entry key="..\:/Users/ms266/AndroidStudioProjects/VenU/app/src/main/res/layout/event_preview.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/zs/VenU/app/src/main/res/layout/activity_badge.xml" value="0.20520833333333333" />
+=======
+        <entry key="..\:/Users/ms266/AndroidStudioProjects/VenU/app/src/main/res/layout/event_preview.xml" value="0.33" />
+        <entry key="..\:/Users/ms266/AndroidStudioProjects/VenU/app/src/main/res/layout/test_layout.xml" value="0.33" />
+>>>>>>> Stashed changes
         <entry key="..\:/Users/zs/VenU/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/zs/VenU/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/zs/VenU/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/zs/VenU/app/src/main/res/layout/activity_register.xml" value="0.2015625" />
+<<<<<<< Updated upstream
         <entry key="..\:/Users/zs/VenU/app/src/main/res/layout/event_preview.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/zs/VenU/app/src/main/res/layout/fragment_profile.xml" value="0.19427083333333334" />
         <entry key="..\:/Users/zs/VenU/app/src/main/res/menu/bottom_navigation.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/zs/VenU/app/src/main/res/menu/menu_main.xml" value="0.36666666666666664" />
+=======
+>>>>>>> Stashed changes
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
