@@ -56,7 +56,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFriends"
         android:layout_width="match_parent"
-        android:layout_height="168dp"
+        android:layout_height="146dp"
         android:layout_below="@+id/tvFriends"
         android:layout_alignParentStart="true"
         android:layout_marginStart="0dp"
@@ -67,7 +67,8 @@
         android:id="@+id/badges"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_marginTop="485dp"
+        android:layout_below="@+id/rvFriends"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="17dp"
         android:text="Badges:"
         android:textAlignment="center"
@@ -75,12 +76,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBadges"
-        android:layout_width="411dp"
-        android:layout_height="164dp"
+        android:layout_width="wrap_content"
+        android:layout_height="176dp"
         android:layout_below="@+id/tvBio"
         android:layout_alignParentStart="true"
         android:layout_marginStart="-1dp"
-        android:layout_marginTop="266dp"
+        android:layout_marginTop="284dp"
         android:orientation="horizontal" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

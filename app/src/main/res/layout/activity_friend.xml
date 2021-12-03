@@ -15,7 +15,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvUsername"
+        android:id="@+id/tvFUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

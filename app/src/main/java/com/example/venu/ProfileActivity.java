@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.venu.adapters.BadgeAdapter;
+import com.example.venu.adapters.FriendAdapter;
 import com.example.venu.models.Badge;
+import com.example.venu.models.Friend;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -38,6 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView tvUsername;
     TextView tvNumEvents;
     List<Badge> badges;
+    List<Friend> friends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +96,7 @@ public class ProfileActivity extends AppCompatActivity {
                     tvBio.setText(String.valueOf(profile.get("bio")));
                     List<String> pastEvents = (List<String>) profile.get("pastevents");
                     tvNumEvents.setText("You have been to "+ pastEvents.size()+ " events!");
+                    showFriends(profile.get("friends"));
                     showBadges(profile.get("badges"));
                 }
             }
@@ -103,6 +107,34 @@ public class ProfileActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
+    }
+
+    private void showFriends(Object friendArray){
+        RecyclerView rvFriends = findViewById(R.id.rvFriends);
+        friends = new ArrayList<>();
+        // create the adapter
+        FriendAdapter friendAdapter = new FriendAdapter(this, friends);
+        // set the adapter to the recyclerView
+        rvFriends.setAdapter(friendAdapter);
+        // set the layout manager on the recyclerView
+        rvFriends.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        List<String> objectIDs = (List<String>) friendArray;
+        ParseQuery<ParseObject> friendParseQuery = ParseQuery.getQuery("_User");
+        friendParseQuery.whereContainedIn("objectId", objectIDs);
+        friendParseQuery.findInBackground(new FindCallback<ParseObject>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void done(List<ParseObject> friendsList, ParseException e) {
+                if (e != null){
+                    Log.e(TAG, "issue with getting homies", e);
+                    return;
+                }
+                for (ParseObject friendObject : friendsList){
+                    friends.add(new Friend(friendObject));
+                }
+                friendAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void showBadges(Object badgeArray){

@@ -13,8 +13,8 @@ public class Friend {
     String friendPhoto;
 
     public Friend(ParseObject friend) {
-        name = friend.get("Name").toString();
-        friendPhoto = friend.getParseFile("Image").getUrl();
+        name = friend.get("username").toString();
+        friendPhoto = friend.getParseFile("profilepicture").getUrl();
     }
 
     public String getName() {
