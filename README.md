@@ -2,9 +2,10 @@
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+2. [Product Spec](#Product-Spec)
+3. [Wireframes](#Wireframes)
+4. [Schema](#Schema)
+5. [Sprint Demos](#Sprint-Demos)
 
 ## Overview
 ### Description
@@ -212,6 +213,12 @@
 	```
 	- (Read/GET) Get list of badges the user has earned
 
+## Sprint Demos 
+
 Sprint 1 Progress Demo:
 
 <img src='VenU_sprint_1.gif' title='Sprint 1 Video Walkthrough' width='' alt='Sprint 1 Video Walkthrough' />
+
+Sprint 2 Progress Demo:
+
+<img src='VenU_sprint_2.gif' title='Sprint 2 Video Walkthrough' width='' alt='Sprint 2 Video Walkthrough' />
