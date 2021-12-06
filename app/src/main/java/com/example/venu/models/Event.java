@@ -65,9 +65,19 @@ public class Event {
 
         JSONArray venues_from_json = jsonObject.getJSONObject("_embedded").getJSONArray("venues");
         venue_name = venues_from_json.getJSONObject(0).getString("name");
+        try{
         venue_postalCode = venues_from_json.getJSONObject(0).getString("postalCode");
+        }
+        catch (JSONException e){
+            venue_postalCode = "";
+        }
         venue_city = venues_from_json.getJSONObject(0).getJSONObject("city").getString("name");
-        venue_state_abv = venues_from_json.getJSONObject(0).getJSONObject("state").getString("stateCode");
+        try {
+            venue_state_abv = venues_from_json.getJSONObject(0).getJSONObject("state").getString("stateCode");
+        }
+        catch (JSONException e){
+            venue_state_abv = "";
+        }
 
     }
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -36,6 +37,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public static final String TAG = "MainActivity";
     public static final String BASE_EVENTS_URL = "https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*";
+    public static final String BASE_CATEGORY_PARAM = "&classificationName=";
+    private String url = BASE_EVENTS_URL;
+    private int selected;
+    private Spinner spCategories;
+    private RecyclerView rvEvents;
     private BottomNavigationView bottomNavigationView;
     public static final int LOGIN_ACTIVITY_REQUEST_CODE = 11;
     public static final int PROFILE_ACTIVITY_REQUEST_CODE = 22;
@@ -45,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView rvEvents = findViewById(R.id.rvEvents);
+        rvEvents = findViewById(R.id.rvEvents);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -72,17 +78,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        Spinner spCategories = findViewById(R.id.spCategories);
-        spCategories.setOnItemSelectedListener(this);
+        spCategories = findViewById(R.id.spCategories);
 
         List<String> categories = new ArrayList<String>();
         categories.add("Sports");
         categories.add("Music");
         categories.add("Film");
 
+        if (getIntent().hasExtra("selection")) {
+            selected = getIntent().getIntExtra("selection", 0);
+            url = BASE_EVENTS_URL + BASE_CATEGORY_PARAM + categories.get(selected);
+        }
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spCategories.setAdapter(dataAdapter);
+        spCategories.setSelection(selected, false);
+        spCategories.setOnItemSelectedListener(this);
 
         events = new ArrayList<>();
 
@@ -94,7 +107,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         rvEvents.setLayoutManager(new LinearLayoutManager(this));
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(BASE_EVENTS_URL, new JsonHttpResponseHandler() {
+        Log.i(TAG, "About to request from " + url);
+        client.get(url, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
@@ -130,7 +144,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String item = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), "Selected " + item, Toast.LENGTH_LONG).show();
+        //Toast.makeText(adapterView.getContext(), "Selected " + item, Toast.LENGTH_LONG).show();
+        Log.i(TAG, "Spinner item " + item + " selected");
+        //spCategories.setSelection(0, false);
+        //this.recreate();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("selection", i);
+        startActivity(intent);
+        finish();
     }
 
     @Override
