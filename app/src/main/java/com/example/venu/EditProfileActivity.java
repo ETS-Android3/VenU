@@ -79,6 +79,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         Glide.with(EditProfileActivity.this).load(profile.getParseFile("profilepicture").getUrl()).into(ivTempPic);
                     }
                     etBio.setText(String.valueOf(profile.get("bio")));
+                    photoFile = (ParseFile) profile.getParseFile("profilepicture");
                 }
             }
         });
@@ -105,11 +106,18 @@ public class EditProfileActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     Log.i(TAG,"saved successfully!");
+                    goProfileActivity();
                 } else {
                     Log.e(TAG,"failed", e);
                 }
             }
         });
+    }
+
+    private void goProfileActivity() {
+        Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void getPic() {
