@@ -32,6 +32,7 @@
 - [x] Create a login and registration screen
 - [x] Create a bottom navigation bar that allows log out.
 - [x] Allow users to see their profile including a profile picture and biography.
+- [x] Allow users to edit their profile.
 - [x] Display achieveable badges
 - [ ] Display followers.
 - [ ] Purchase tickets directly in the app.
