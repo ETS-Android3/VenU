@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView tvNumEvents;
     List<Badge> badges;
     List<Friend> friends;
+    Button btnEditProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         ivProfilePicture = findViewById(R.id.ivProfilePic);
         tvNumEvents = findViewById(R.id.tvNumShows);
+        btnEditProfile = findViewById(R.id.btnEdit);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -101,6 +105,19 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "EditProfile login button");
+                goEdit();
+            }
+        });
+    }
+
+    private void goEdit() {
+        Intent i = new Intent(this, EditProfileActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void goMainActivity() {
