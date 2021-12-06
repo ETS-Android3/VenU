@@ -26,8 +26,6 @@ public class Event {
     String min_price;
     String max_price;
     String date;
-    String preview_image_url;
-    String banner_image_url;
     String largest_image_url;
     String primary_classification;
     String genre;
@@ -46,22 +44,6 @@ public class Event {
 
         // retrieve image JSONArray to find objects containing image info
         JSONArray images_from_json = jsonObject.getJSONArray("images");
-        preview_image_url = images_from_json.getJSONObject(0).getString("url"); //default if 4:3 not found
-        for (int i = 0; i < images_from_json.length(); i++){
-            JSONObject obj = images_from_json.getJSONObject(i);
-            if (obj.getString("ratio").equals("4_3")){
-                preview_image_url = images_from_json.getJSONObject(i).getString("url"); // 4:3 ratio
-                break;
-            }
-        }
-        banner_image_url = images_from_json.getJSONObject(1).getString("url");  // default if 16:9 not found
-        for (int i = 0; i < images_from_json.length(); i++){
-            JSONObject obj = images_from_json.getJSONObject(i);
-            if (obj.getString("ratio").equals("16_9")){
-                preview_image_url = images_from_json.getJSONObject(i).getString("url"); // 16:9 ratio
-                break;
-            }
-        }
         int max_height = 0;
         for (int i = 0; i < images_from_json.length(); i++){
             JSONObject obj = images_from_json.getJSONObject(i);
@@ -131,14 +113,6 @@ public class Event {
 
     public String getDate() {
         return date;
-    }
-
-    public String getPreview_image_url() {
-        return preview_image_url;
-    }
-
-    public String getBanner_image_url() {
-        return banner_image_url;
     }
 
     public String getLargest_image_url() { return largest_image_url; }
