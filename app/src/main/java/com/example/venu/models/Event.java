@@ -1,7 +1,5 @@
 package com.example.venu.models;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,8 +50,6 @@ public class Event {
                 max_height = obj.getInt("height");
             }
         }
-
-        Log.i(TAG, title+" max height is "+max_height);
 
         JSONArray prices_from_json = jsonObject.getJSONArray("priceRanges");
         float min_price_float = Float.parseFloat(prices_from_json.getJSONObject(0).getString("min"));
