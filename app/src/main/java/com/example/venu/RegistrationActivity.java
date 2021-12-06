@@ -64,6 +64,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     user.setEmail(etEmail.getText().toString());
                     user.setUsername(etUsername.getText().toString());
                     user.setPassword(etPassword.getText().toString());
+                    user.put("bio", etBio.getText().toString());
                     // Invoke signUpInBackground
                     user.signUpInBackground(new SignUpCallback() {
                         public void done(ParseException e) {
