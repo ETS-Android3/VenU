@@ -27,8 +27,7 @@
 
 - [x] Retrieve a list of events from the Ticketmaster API.
 - [ ] Filter events by radius
-- [ ] Filter events by genre.
-- [ ] Filter by user preferences.
+- [x] Filter events by genre.
 - [x] Create a login and registration screen
 - [x] Create a bottom navigation bar that allows log out.
 - [x] Allow users to see their profile including a profile picture and biography.
