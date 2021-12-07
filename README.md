@@ -34,7 +34,7 @@
 - [x] Allow users to see their profile including a profile picture and biography.
 - [x] Allow users to edit their profile.
 - [x] Display achieveable badges
-- [ ] Display followers.
+- [] Display followers.
 - [ ] Purchase tickets directly in the app.
 
 **Optional Nice-to-have Stories**
@@ -223,3 +223,7 @@ Sprint 1 Progress Demo:
 Sprint 2 Progress Demo:
 
 <img src='VenU_sprint_2.gif' title='Sprint 2 Video Walkthrough' width='' alt='Sprint 2 Video Walkthrough' />
+
+Sprint 3 Progress Demo:
+
+<img src='VenU_sprint_3.gif' title='Sprint 3 Video Walkthrough' width='' alt='Sprint 3 Video Walkthrough' />
