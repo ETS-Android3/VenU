@@ -1,7 +1,6 @@
 package com.example.venu;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,18 +8,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.venu.adapters.BadgeAdapter;
 import com.example.venu.adapters.FriendAdapter;
+import com.example.venu.fragments.ProfileEditFragment;
 import com.example.venu.models.Badge;
 import com.example.venu.models.Friend;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,47 +42,21 @@ public class OthersActivity extends AppCompatActivity {
     TextView tvNumEvents;
     List<Badge> badges;
     List<Friend> friends;
-    Button btnEditProfile;
     String username;
     Button btnAddFriend;
     Boolean friended = Boolean.FALSE;
+    String OtherUserObjectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        tvBio = findViewById(R.id.tvBio);
-        tvUsername = findViewById(R.id.tvUsername);
-        ivProfilePicture = findViewById(R.id.ivProfilePic);
-        tvNumEvents = findViewById(R.id.tvNumShows);
-        btnEditProfile = findViewById(R.id.btnEdit);
-        btnAddFriend = findViewById(R.id.btnAdd);
+        setContentView(R.layout.activity_other);
+        tvBio = findViewById(R.id.tvBioOther);
+        tvUsername = findViewById(R.id.tvUsernameOther);
+        ivProfilePicture = findViewById(R.id.ivProfilePicOther);
+        tvNumEvents = findViewById(R.id.tvNumShowsOther);
+        btnAddFriend = findViewById(R.id.btnAddOther);
         username = getIntent().getStringExtra("username");
-
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem){
-                switch (menuItem.getItemId()) {
-                    case R.id.action_search:
-                        goMainActivity();
-                        return true;
-                    case R.id.action_profile:
-                        Log.i(TAG, "ProfileActivity pressed");
-                        break;
-                    case R.id.action_logout:
-                        ParseUser.logOut();
-                        ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-                        Intent intentl = new Intent(OthersActivity.this, LoginActivity.class);
-                        startActivityForResult(intentl, LOGIN_ACTIVITY_REQUEST_CODE);
-                        return true;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });
 
         ParseQuery<ParseUser> query = ParseQuery.getQuery("_User");
         query.include(Profile.KEY_USERNAME);
@@ -100,44 +73,35 @@ public class OthersActivity extends AppCompatActivity {
                     if (profile.get("profilepicture") != null ){
                         Glide.with(OthersActivity.this).load(profile.getParseFile("profilepicture").getUrl()).into(ivProfilePicture);
                     }
+                    OtherUserObjectId = profile.getObjectId();
                     tvUsername.setText(profile.getUsername());
                     tvBio.setText(String.valueOf(profile.get("bio")));
                     List<String> pastEvents = (List<String>) profile.get("pastevents");
                     tvNumEvents.setText("They have been to "+ pastEvents.size()+ " events!");
                     showFriends(profile.get("friends"));
                     showBadges(profile.get("badges"));
-                    List<String> friendsList = (List<String>) profile.get("friends");
-                    friended = friendsList.contains(ParseUser.getCurrentUser().getObjectId());
-                    Log.i(TAG, String.valueOf(friended));
+                    List<String> yourFriendsList = (List<String>) ParseUser.getCurrentUser().get("friends");
+                    friended = yourFriendsList.contains(OtherUserObjectId);
+                    // Log.i(TAG, String.valueOf(friended));
                     if (friended == Boolean.FALSE){
-                        btnAddFriend.setVisibility(View.VISIBLE);
+                        btnAddFriend.setEnabled(true);
+                    }else{
+                        btnAddFriend.setEnabled(false);
                     }
                 }
             }
         });
-        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+
+        btnAddFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "EditProfile login button");
-                goEdit();
+                add_friend();
             }
         });
     }
 
-    private void goEdit() {
-        Intent i = new Intent(this, EditProfileActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-        finish();
-    }
-
     private void showFriends(Object friendArray){
-        RecyclerView rvFriends = findViewById(R.id.rvFriends);
+        RecyclerView rvFriends = findViewById(R.id.rvFriendsOther);
         friends = new ArrayList<>();
         // create the adapter
         FriendAdapter friendAdapter = new FriendAdapter(this, friends);
@@ -165,7 +129,7 @@ public class OthersActivity extends AppCompatActivity {
     }
 
     private void showBadges(Object badgeArray){
-        RecyclerView rvBadges = findViewById(R.id.rvBadges);
+        RecyclerView rvBadges = findViewById(R.id.rvBadgesOther);
         badges = new ArrayList<>();
         // create the adapter
         BadgeAdapter badgeAdapter = new BadgeAdapter(this, badges);
@@ -190,5 +154,16 @@ public class OthersActivity extends AppCompatActivity {
                 badgeAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    public void add_friend(){
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        currentUser.add("friends", OtherUserObjectId);
+        try {
+            currentUser.save();
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+        }
+        btnAddFriend.setEnabled(false);
     }
 }

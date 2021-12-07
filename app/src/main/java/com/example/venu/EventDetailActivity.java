@@ -62,10 +62,10 @@ public class EventDetailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        tvTitleDetail.setText(event.getTitle());
-        tvVenueDetail.setText(event.getVenue_name());
-        tvCityDetail.setText(event.getVenue_city()+", "+event.getVenue_state_abv());
-        tvDateDetail.setText(event.getDate());
+        if(!event.getTitle().isEmpty()){tvTitleDetail.setText(event.getTitle());}
+        if(!event.getVenue_name().isEmpty()){tvVenueDetail.setText(event.getVenue_name());}
+        if(!event.getVenue_city().isEmpty()){tvCityDetail.setText(event.getVenue_city()+", "+event.getVenue_state_abv());}
+        if(!event.getDate().isEmpty()){tvDateDetail.setText(event.getDate());}
         tvPriceRange.setText("$"+event.getMin_price()+" - $"+event.getMax_price());
         Glide.with(this).load(event.getLargest_image_url()).into(ivBanner);
 

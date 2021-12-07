@@ -29,6 +29,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
     Context context;
     List<Event> events;
 
+    public interface EventDetailFragmentListener{
+        void OnEventClick(Parcelable wrapped_event);
+    }
+
     public EventAdapter(Context context, List<Event> events) {
         this.context = context;
         this.events = events;
@@ -74,11 +78,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
         }
 
         public void bind(Event event) {
-            tvTitle.setText(event.getTitle());
-            tvVenue.setText(event.getVenue_name());
-            tvPrice.setText("$"+event.getMin_price());
-            tvDate.setText(event.getDate());
-            tvCity.setText(event.getVenue_city()+", "+event.getVenue_state_abv());
+            if(!event.getTitle().isEmpty()){tvTitle.setText(event.getTitle());}
+            if(!event.getVenue_name().isEmpty()){tvVenue.setText(event.getVenue_name());}
+            if(!event.getMin_price().isEmpty()){tvPrice.setText("$"+event.getMin_price());}
+            if(!event.getDate().isEmpty()){tvDate.setText(event.getDate());}
+            if(!event.getVenue_city().isEmpty()){tvCity.setText(event.getVenue_city()+", "+event.getVenue_state_abv());}
             Glide.with(context).load(event.getLargest_image_url()).into(ivPhotoLargest);
             Glide.with(context)
                     .load(event.getLargest_image_url())
@@ -88,8 +92,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
             preview_container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(context, EventDetailActivity.class);
                     Parcelable wrapped_event = Parcels.wrap(event);
+                    Intent i = new Intent(context, EventDetailActivity.class);
                     i.putExtra("event", wrapped_event);
                     context.startActivity(i);
                 }

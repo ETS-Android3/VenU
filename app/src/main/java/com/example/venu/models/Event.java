@@ -51,15 +51,30 @@ public class Event {
             }
         }
 
-        JSONArray prices_from_json = jsonObject.getJSONArray("priceRanges");
-        float min_price_float = Float.parseFloat(prices_from_json.getJSONObject(0).getString("min"));
-        float max_price_float = Float.parseFloat(prices_from_json.getJSONObject(0).getString("max"));
-        min_price = df.format(min_price_float);
-        max_price = df.format(max_price_float);
+        try{
+            JSONArray prices_from_json = jsonObject.getJSONArray("priceRanges");
+            float min_price_float = Float.parseFloat(prices_from_json.getJSONObject(0).getString("min"));
+            float max_price_float = Float.parseFloat(prices_from_json.getJSONObject(0).getString("max"));
+            min_price = df.format(min_price_float);
+            max_price = df.format(max_price_float);
+        }catch(JSONException e){
+            min_price = "";
+            max_price = "";
+        }
 
         JSONArray classifications_from_json = jsonObject.getJSONArray("classifications");
-        primary_classification = classifications_from_json.getJSONObject(0).getJSONObject("segment").getString("name");
-        genre = classifications_from_json.getJSONObject(0).getJSONObject("genre").getString("name");
+
+        try{
+            primary_classification = classifications_from_json.getJSONObject(0).getJSONObject("segment").getString("name");
+        }catch(JSONException e){
+            primary_classification = "";
+        }
+        try{
+            genre = classifications_from_json.getJSONObject(0).getJSONObject("genre").getString("name");
+        }catch(JSONException e){
+            genre = "";
+        }
+
 
         date = jsonObject.getJSONObject("dates").getJSONObject("start").getString("localDate");
 

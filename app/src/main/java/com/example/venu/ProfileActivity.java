@@ -5,13 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +19,6 @@ import com.example.venu.adapters.BadgeAdapter;
 import com.example.venu.adapters.FriendAdapter;
 import com.example.venu.models.Badge;
 import com.example.venu.models.Friend;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -36,7 +33,6 @@ public class ProfileActivity extends AppCompatActivity {
     private Context context;
     public static final int LOGIN_ACTIVITY_REQUEST_CODE = 11;
     public static final int MAIN_ACTIVITY_REQUEST_CODE = 33;
-    private BottomNavigationView bottomNavigationView;
     ImageView ivProfilePicture;
     TextView tvBio;
     TextView tvUsername;
@@ -49,37 +45,11 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        tvBio = findViewById(R.id.tvBio);
-        tvUsername = findViewById(R.id.tvUsername);
-        ivProfilePicture = findViewById(R.id.ivProfilePic);
-        tvNumEvents = findViewById(R.id.tvNumShows);
-        btnEditProfile = findViewById(R.id.btnEdit);
-
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem){
-                switch (menuItem.getItemId()) {
-                    case R.id.action_search:
-                        goMainActivity();
-                        return true;
-                    case R.id.action_profile:
-                        Log.i(TAG, "ProfileActivity pressed");
-                        break;
-                    case R.id.action_logout:
-                        ParseUser.logOut();
-                        ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-                        Intent intentl = new Intent(ProfileActivity.this, LoginActivity.class);
-                        startActivityForResult(intentl, LOGIN_ACTIVITY_REQUEST_CODE);
-                        return true;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });
-
+        tvBio = findViewById(R.id.tvBioOther);
+        tvUsername = findViewById(R.id.tvUsernameOther);
+        ivProfilePicture = findViewById(R.id.ivProfilePicOther);
+        tvNumEvents = findViewById(R.id.tvNumShowsOther);
+        btnEditProfile = findViewById(R.id.btnAddOther);
 
         ParseQuery<ParseUser> query = ParseQuery.getQuery("_User");
         query.include(Profile.KEY_USERNAME);
@@ -128,7 +98,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showFriends(Object friendArray){
-        RecyclerView rvFriends = findViewById(R.id.rvFriends);
+        RecyclerView rvFriends = findViewById(R.id.rvFriendsOther);
         friends = new ArrayList<>();
         // create the adapter
         FriendAdapter friendAdapter = new FriendAdapter(this, friends);
@@ -156,7 +126,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showBadges(Object badgeArray){
-        RecyclerView rvBadges = findViewById(R.id.rvBadges);
+        RecyclerView rvBadges = findViewById(R.id.rvBadgesOther);
         badges = new ArrayList<>();
         // create the adapter
         BadgeAdapter badgeAdapter = new BadgeAdapter(this, badges);

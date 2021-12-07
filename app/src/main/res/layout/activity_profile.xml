@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvNumShows"
+        android:id="@+id/tvNumShowsOther"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -14,10 +14,10 @@
         android:text="You been to __ events!" />
 
     <ImageView
-        android:id="@+id/ivProfilePic"
+        android:id="@+id/ivProfilePicOther"
         android:layout_width="104dp"
         android:layout_height="87dp"
-        android:layout_below="@+id/tvNumShows"
+        android:layout_below="@+id/tvNumShowsOther"
         android:layout_centerInParent="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -25,20 +25,20 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvUsername"
+        android:id="@+id/tvUsernameOther"
         android:layout_width="114dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivProfilePic"
+        android:layout_below="@+id/ivProfilePicOther"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="7dp"
         android:text="Username"
         android:textAlignment="center" />
 
     <TextView
-        android:id="@+id/tvBio"
+        android:id="@+id/tvBioOther"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvUsername"
+        android:layout_below="@+id/tvUsernameOther"
         android:layout_marginTop="3dp"
         android:text="Biography"
         android:textAlignment="center" />
@@ -54,7 +54,7 @@
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvFriends"
+        android:id="@+id/rvFriendsOther"
         android:layout_width="match_parent"
         android:layout_height="146dp"
         android:layout_below="@+id/tvFriends"
@@ -67,7 +67,7 @@
         android:id="@+id/badges"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_below="@+id/rvFriends"
+        android:layout_below="@+id/rvFriendsOther"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="17dp"
         android:text="Badges:"
@@ -75,10 +75,10 @@
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvBadges"
+        android:id="@+id/rvBadgesOther"
         android:layout_width="wrap_content"
         android:layout_height="176dp"
-        android:layout_below="@+id/tvBio"
+        android:layout_below="@+id/tvBioOther"
         android:layout_alignParentStart="true"
         android:layout_marginStart="-1dp"
         android:layout_marginTop="284dp"
@@ -92,7 +92,7 @@
         app:menu="@menu/bottom_navigation_menu" />
 
     <Button
-        android:id="@+id/btnEdit"
+        android:id="@+id/btnAddOther"
         android:layout_width="56dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -100,7 +100,7 @@
         android:visibility="invisible"/>
 
     <Button
-        android:id="@+id/btnAdd"
+        android:id="@+id/btnAddOther"
         android:layout_width="69dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

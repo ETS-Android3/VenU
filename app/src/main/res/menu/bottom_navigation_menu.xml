@@ -3,18 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_home_24"
+        android:title="Home"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_24"
         android:title="Search"
+        android:visible="true"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_profile"
+        android:icon="@drawable/ic_account_box_24"
         android:title="Profile"
+        android:visible="true"
         app:showAsAction="always" />
-
     <item
         android:id="@+id/action_logout"
+        android:icon="@drawable/ic_person_remove_alt_1_24"
         android:title="Logout"
+        android:visible="true"
         app:showAsAction="always" />
 
 </menu>

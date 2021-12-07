@@ -43,10 +43,6 @@
             android:name=".RegistrationActivity"
             android:exported="true"></activity>
         <activity
-            android:name=".ProfileActivity"
-            android:exported="true">
-        </activity>
-        <activity
             android:name=".MainActivity"
             android:exported="true"></activity>
         <activity
