@@ -52,7 +52,10 @@ public class RegistrationActivity extends AppCompatActivity {
         etBio = findViewById(R.id.etAbout);
 
         String password = etPassword.getText().toString();
+        Log.i(TAG,password);
+
         String confPassword = etConfirmPassword.getText().toString();
+        Log.i(TAG,confPassword);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
 
