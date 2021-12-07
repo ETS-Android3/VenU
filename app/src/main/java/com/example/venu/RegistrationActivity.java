@@ -51,8 +51,8 @@ public class RegistrationActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         etBio = findViewById(R.id.etAbout);
 
-        final String password = etPassword.getText().toString();
-        final String confPassword = etConfirmPassword.getText().toString();
+        String password = etPassword.getText().toString();
+        String confPassword = etConfirmPassword.getText().toString();
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
 
