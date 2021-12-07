@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,11 +33,9 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileActivity extends AppCompatActivity {
-    public static final String TAG = "ProfileActivity";
-    private Context context;
+public class OthersActivity extends AppCompatActivity {
+    public static final String TAG = "OtherActivity";
     public static final int LOGIN_ACTIVITY_REQUEST_CODE = 11;
-    public static final int MAIN_ACTIVITY_REQUEST_CODE = 33;
     private BottomNavigationView bottomNavigationView;
     ImageView ivProfilePicture;
     TextView tvBio;
@@ -44,6 +44,9 @@ public class ProfileActivity extends AppCompatActivity {
     List<Badge> badges;
     List<Friend> friends;
     Button btnEditProfile;
+    String username;
+    Button btnAddFriend;
+    Boolean friended = Boolean.FALSE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class ProfileActivity extends AppCompatActivity {
         ivProfilePicture = findViewById(R.id.ivProfilePic);
         tvNumEvents = findViewById(R.id.tvNumShows);
         btnEditProfile = findViewById(R.id.btnEdit);
+        btnAddFriend = findViewById(R.id.btnAdd);
+        username = getIntent().getStringExtra("username");
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -70,7 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
                     case R.id.action_logout:
                         ParseUser.logOut();
                         ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-                        Intent intentl = new Intent(ProfileActivity.this, LoginActivity.class);
+                        Intent intentl = new Intent(OthersActivity.this, LoginActivity.class);
                         startActivityForResult(intentl, LOGIN_ACTIVITY_REQUEST_CODE);
                         return true;
                     default:
@@ -80,10 +85,9 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
         ParseQuery<ParseUser> query = ParseQuery.getQuery("_User");
         query.include(Profile.KEY_USERNAME);
-        query.whereEqualTo(Profile.KEY_USERNAME, ParseUser.getCurrentUser().getUsername());
+        query.whereEqualTo(Profile.KEY_USERNAME, username);
         query.setLimit(1);
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
@@ -94,15 +98,20 @@ public class ProfileActivity extends AppCompatActivity {
                 }
                 for (ParseUser profile : profiles) {
                     if (profile.get("profilepicture") != null ){
-                        Glide.with(ProfileActivity.this).load(profile.getParseFile("profilepicture").getUrl()).into(ivProfilePicture);
+                        Glide.with(OthersActivity.this).load(profile.getParseFile("profilepicture").getUrl()).into(ivProfilePicture);
                     }
                     tvUsername.setText(profile.getUsername());
                     tvBio.setText(String.valueOf(profile.get("bio")));
                     List<String> pastEvents = (List<String>) profile.get("pastevents");
-                    tvNumEvents.setText("You have been to "+ pastEvents.size()+ " events!");
+                    tvNumEvents.setText("They have been to "+ pastEvents.size()+ " events!");
                     showFriends(profile.get("friends"));
                     showBadges(profile.get("badges"));
-                    btnEditProfile.setVisibility(View.VISIBLE);
+                    List<String> friendsList = (List<String>) profile.get("friends");
+                    friended = friendsList.contains(ParseUser.getCurrentUser().getObjectId());
+                    Log.i(TAG, String.valueOf(friended));
+                    if (friended == Boolean.FALSE){
+                        btnAddFriend.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });

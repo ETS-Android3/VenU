@@ -1,16 +1,19 @@
 package com.example.venu.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.venu.OthersActivity;
 import com.example.venu.R;
 import com.example.venu.models.Badge;
 import com.example.venu.models.Friend;
@@ -21,6 +24,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
 
     Context context;
     List<Friend> friends;
+    LinearLayout container;
 
     public FriendAdapter(Context context, List<Friend> friends) {
         this.context = context;
@@ -54,11 +58,21 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
             super(itemView);
             tvFUsername = itemView.findViewById(R.id.tvFUsername);
             ivFriendPicture = itemView.findViewById(R.id.ivFriendPicture);
+            container = itemView.findViewById(R.id.friendContainer);
         }
 
         public void bind(Friend friend) {
             tvFUsername.setText(friend.getName());
             Glide.with(context).load(friend.getfriendPhotoUrl()).override(50, 50).centerCrop().into(ivFriendPicture);
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(context, OthersActivity.class);
+                    i.putExtra("username", friend.getName());
+                    context.startActivity(i);
+                }
+            });
+
         }
     }
 }
