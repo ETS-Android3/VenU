@@ -34,13 +34,13 @@
 - [x] Allow users to see their profile including a profile picture and biography.
 - [x] Allow users to edit their profile.
 - [x] Display achieveable badges
-- [] Display followers.
+- [x] Display followers.
+- [x] Allow following other people.
 - [ ] Purchase tickets directly in the app.
 
 **Optional Nice-to-have Stories**
 
 - Login via Google OAUTH
-- Ability to add other uses as friends
 - Connect with and message other users attending the same events as you
 - Track confirmed event attendance and save to user's profile
 - Work towards in-app achievements/rewards program based on event attendence
