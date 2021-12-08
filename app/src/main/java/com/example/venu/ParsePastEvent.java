@@ -44,4 +44,5 @@ public class ParsePastEvent extends ParseObject {
     public void setDesc(String desc) {
         put(KEY_DESC, desc);
     }
+
 }
