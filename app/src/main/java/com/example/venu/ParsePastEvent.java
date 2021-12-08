@@ -8,40 +8,67 @@ import com.parse.ParseObject;
 
 @ParseClassName("Event")
 public class ParsePastEvent extends ParseObject {
-    public static final String KEY_NAME = "Name";
-    public static final String KEY_COST = "Cost";
-    public static final String KEY_EVENT_ID = "eventID";
-    public static final String KEY_DESC = "Description";
+    public static final String KEY_TICKETMASTER_ID = "ticketmaster_id";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_VENUE = "venue";
+    public static final String KEY_CITY = "city";
+    public static final String KEY_DATE = "date";
+    public static final String KEY_ATTENDEES = "attendees";
+    public static final String KEY_IMAGE = "bannerURL";
 
-    public String getName() {
-        return getString(KEY_NAME);
+    public String getTicketmasterId() {
+        return getString(KEY_TICKETMASTER_ID);
     }
 
-    public String getCost() {
-        return getString(KEY_COST);
+    public String getTitle() {
+        return getString(KEY_TITLE);
     }
 
-    public String getEventId() {
-        return getString(KEY_EVENT_ID);
+    public String getVenue() {
+        return getString(KEY_VENUE);
     }
 
-    public String getDesc() {
-        return getString(KEY_DESC);
+    public String getCity() {
+        return getString(KEY_CITY);
     }
 
-    public void setName(String name) {
-        put(KEY_NAME, name);
+    public String getDate() {
+        return getString(KEY_DATE);
     }
 
-    public void setCost(String cost) {
-        put(KEY_COST, cost);
+    public ParseObject getAttendees() {
+        return getParseObject(KEY_ATTENDEES);
     }
 
-    public void setKeyEventId(String eventId) {
-        put(KEY_EVENT_ID, eventId);
+    public String getImage() {
+        return getString(KEY_IMAGE);
     }
 
-    public void setDesc(String desc) {
-        put(KEY_DESC, desc);
+    public void setTicketmasterId(String ticketmaster_id){
+        put(KEY_TICKETMASTER_ID, ticketmaster_id);
+    }
+
+    public void setTitle(String title){
+        put(KEY_TITLE, title);
+    }
+
+    public void setVenue(String venue){
+        put(KEY_VENUE, venue);
+    }
+
+    public void setCity(String city){
+        put(KEY_CITY, city);
+    }
+
+    public void setDate(String date){
+        put(KEY_DATE, date);
+    }
+
+    public void setAttendees(String[] attendees){
+        put(KEY_ATTENDEES, attendees);
+    }
+
+    public void setImage(String image_url){
+        put(KEY_IMAGE, image_url);
     }
 }

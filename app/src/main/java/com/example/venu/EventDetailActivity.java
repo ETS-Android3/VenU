@@ -82,14 +82,15 @@ public class EventDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     String past_event_id = get_past_event_id(event.getId());
-                    if(past_event_id == null){
-                        // create new event and add it to user's past events
+
+                    if(past_event_id == null){  // if the event we are currently viewing does not exist in our local DB
+                        // create a new one and add it to the current user's past events
                         Log.i(TAG, "Event with id "+event.getId()+" not found. Create new event");
 
                         // TODO: edit Event object in back4app to reflect usage and fill with data accordingly
-                        ParsePastEvent new_event = new ParsePastEvent();
-                        new_event.setName(event.getTitle());
-                        new_event.setKeyEventId(event.getId());
+                        ParsePastEvent new_event = new ParsePastEvent();    // new event object using ParsePastEvent model
+                        new_event.setTitle(event.getTitle());
+                        new_event.setTicketmasterId(event.getId());
                         new_event.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
@@ -97,16 +98,16 @@ public class EventDetailActivity extends AppCompatActivity {
                                     Log.e(TAG, "Error while creating new event", e);
                                 }
                                 Log.i(TAG, "Event created successfully.");
-                                currentUser.add("pastevents", new_event.getObjectId());
+                                currentUser.add("pastevents", new_event.getObjectId()); // adds the back4app id to our user's past event array
                                 try {
                                     currentUser.save();
                                 } catch (ParseException parseException) {
                                     parseException.printStackTrace();
                                 }
-                                btnAttend.setEnabled(false);
+                                btnAttend.setEnabled(false);    // disable the event button since the user is now marked as attending
                             }
                         });
-                    }else{
+                    }else{  // if the event already exists in our database
                         // add existing event to user's past events
                         Log.i(TAG, "Event with id "+event.getId()+" found: "+past_event_id);
                         currentUser.add("pastevents", past_event_id);
@@ -124,6 +125,8 @@ public class EventDetailActivity extends AppCompatActivity {
         });
     }
 
+    // takes in a ticketmaster event id and returns the corresponding back4app event object id
+    // returns null if the event with the passed-in id does not exist in the event table
     private String get_past_event_id(String eventId) throws ParseException {
         String past_event_id = null;
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
