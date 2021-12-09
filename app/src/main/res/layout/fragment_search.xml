@@ -17,6 +17,7 @@
         android:inputType="textPersonName"
         android:selectAllOnFocus="false"
         android:singleLine="false"
+        android:textColorLink="@color/purple_sec"
         tools:text="Search" />
 
     <TextView

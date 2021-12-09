@@ -9,14 +9,25 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:id="@+id/tvLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/venu_logo"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLogo"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="40dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="email" />
@@ -28,7 +39,6 @@
         android:layout_below="@+id/etEmail"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="3dp"
         android:layout_marginTop="15dp"
         android:layout_weight="1"
         android:ems="10"
@@ -41,7 +51,6 @@
         android:layout_below="@+id/etUsername"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:ems="10"
@@ -55,9 +64,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="1dp"
         android:layout_marginTop="70dp"
-        android:layout_marginEnd="-3dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="confirm password"
@@ -73,7 +80,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="350dp"
-        android:layout_marginEnd="-2dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="password"

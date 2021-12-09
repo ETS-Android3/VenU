@@ -31,9 +31,8 @@
             android:id="@+id/tvVenue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTitle"
+            android:layout_alignTop="@+id/ivPhotoLargest"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="0dp"
             tools:text="Sample Venue Name" />
 

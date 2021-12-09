@@ -10,8 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_below="@+id/ivProfilePic"
+        android:layout_alignEnd="@+id/ivProfilePic"
+        android:layout_alignParentStart="true"
         android:text="Edit"
-        android:textSize="8sp" />
+        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/ivProfilePic"
@@ -81,7 +83,7 @@
         android:layout_toEndOf="@+id/ivProfilePic"
         android:text="Username"
         android:textAlignment="center"
-        android:textColor="#673AB7"
+        android:textColor="@color/orange_main"
         android:textSize="32sp"
         android:textStyle="bold" />
 
@@ -91,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/events_attended"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/ivProfilePic"
         android:text="Biography"
         android:textAlignment="textStart" />
@@ -104,6 +106,7 @@
         android:layout_marginTop="150dp"
         android:text="Following:"
         android:textAlignment="center"
+        android:textColor="@color/purple_sec"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -125,6 +128,7 @@
         android:layout_marginBottom="17dp"
         android:text="Badges:"
         android:textAlignment="center"
+        android:textColor="@color/purple_sec"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
