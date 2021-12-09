@@ -67,6 +67,12 @@ public class EventDetailActivity extends AppCompatActivity {
         String eventId = event.getId();
 
         try {
+            showAttendees(eventId);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
             set_attend_button(btnAttend, eventId);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -207,6 +213,9 @@ public class EventDetailActivity extends AppCompatActivity {
         rvAttendees.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         List<String> objectIDs = get_attendees(eventID);
         Log.i(TAG, "Show attendees" + String.valueOf(objectIDs));
+        if (objectIDs == null){
+            return;
+        }
         ParseQuery<ParseObject> attendeeParseQuery = ParseQuery.getQuery("_User");
         attendeeParseQuery.whereContainedIn("objectId", objectIDs);
         attendeeParseQuery.findInBackground(new FindCallback<ParseObject>() {
