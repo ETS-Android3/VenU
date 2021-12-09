@@ -108,7 +108,7 @@ public class MainFeedFragment extends Fragment implements AdapterView.OnItemSele
         rvEvents = view.findViewById(R.id.rvEvents);
         spCategories = view.findViewById(R.id.spCategories);
 
-        Spinner spCategories = view.findViewById(R.id.spCategories);
+        spCategories = view.findViewById(R.id.spCategories);
         spCategories.setOnItemSelectedListener(this);
 
         List<String> categories = new ArrayList<String>();

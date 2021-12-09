@@ -19,7 +19,7 @@ public class Profile extends ParseObject {
         return getParseUser(KEY_USERNAME);
     }
 
-    public ParseUser getBadges(){
+    public ParseObject getBadges(){
         return getParseUser(KEY_BADGES);
     }
 
