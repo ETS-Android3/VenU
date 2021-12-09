@@ -85,5 +85,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        fragmentManager.beginTransaction()
+                .replace(R.id.flContainer, new MainFeedFragment())
+                .addToBackStack(null)
+                .commit();
+
     }
 }

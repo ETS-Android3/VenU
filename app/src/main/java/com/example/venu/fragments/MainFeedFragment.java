@@ -119,10 +119,6 @@ public class MainFeedFragment extends Fragment implements AdapterView.OnItemSele
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategories.setAdapter(dataAdapter);
-
-        queryEvents("");
-
-
     }
 
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
