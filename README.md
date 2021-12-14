@@ -26,7 +26,7 @@
 **Required Must-have Stories**
 
 - [x] Retrieve a list of events from the Ticketmaster API.
-- [ ] Filter events by radius
+- [x] Filter events by radius
 - [x] Filter events by genre.
 - [x] Create a login and registration screen
 - [x] Create a bottom navigation bar that allows log out.
