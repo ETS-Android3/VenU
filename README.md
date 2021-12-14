@@ -35,7 +35,7 @@
 - [x] Display achieveable badges
 - [x] Display followers.
 - [x] Allow following other people.
-- [ ] See friends attending same events.
+- [x] See friends attending same events.
 
 **Optional Nice-to-have Stories**
 
