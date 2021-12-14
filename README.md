@@ -226,3 +226,7 @@ Sprint 2 Progress Demo:
 Sprint 3 Progress Demo:
 
 <img src='VenU_sprint_3.gif' title='Sprint 3 Video Walkthrough' width='' alt='Sprint 3 Video Walkthrough' />
+
+Sprint 4 Progress Demo:
+
+<img src='VenU_sprint_4.gif' title='Sprint 4 Video Walkthrough' width='' alt='Sprint 4 Video Walkthrough' />
